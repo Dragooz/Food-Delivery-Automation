@@ -1,0 +1,651 @@
+1. 
+日本豆腐 (Japanese Tofu)
+Crab Nugget
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+**不要汁 (No Broth)**
+
+2. 
+蒸蛋 (Steamed Egg)
+蒸猪肉 (Steamed Pork)
+咖喱菜 (Curry Vegetables)
+**少饭 (Less Rice)**
+
+3. 
+黑猪肉 (Black Sauce Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+菜豆 (French Beans)
+**加饭 (Extra Rice)**
+
+4. 
+蒸蛋 (Steamed Egg)
+甜酸肉片 (Sweet & Sour Pork)
+羊角豆 (Ladies Finger)
+
+
+5. 
+甜酸肉片 (Sweet & Sour Pork)
+Crab Nugget
+羊角豆 (Ladies Finger)
+
+
+6. 
+咕噜肉 (Gu Lu Pork)
+午餐肉 (Luncheon Meat)
+羊角豆 (Ladies Finger)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+7. 
+炸猪肉条 (Fried Pork Strip)
+午餐肉 (Luncheon Meat)
+Crab Nugget
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+8. 
+炸猪肉条 (Fried Pork Strip)
+咕噜肉 (Gu Lu Pork)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+9. 
+咕噜肉 (Gu Lu Pork)
+午餐肉 (Luncheon Meat)
+肉碎豆腐 (Tofu with Minced Pork)
+
+
+10. 
+肉丸 (Meatballs)
+肉碎豆腐 (Tofu with Minced Pork)
+羊角豆 (Ladies Finger)
+**加饭 (Extra Rice)**
+
+11. 
+芙蓉蛋 (Chinese Omelet)
+蒸猪肉 (Steamed Pork)
+咖喱菜 (Curry Vegetables)
+
+
+12. 
+炸鸡肉条 (Fried Chicken Strip)
+炸猪肉条 (Fried Pork Strip)
+菜豆 (French Beans)
+
+
+13. 
+甜酸肉片 (Sweet & Sour Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+日本豆腐 (Japanese Tofu)
+
+
+14. 
+芙蓉蛋 (Chinese Omelet)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+肉丸 (Meatballs)
+
+
+15. 
+芙蓉蛋 (Chinese Omelet)
+咕噜肉 (Gu Lu Pork)
+羊角豆 (Ladies Finger)
+**淋咖喱汁 (Add Curry Broth)**
+
+16. 
+咕噜肉 (Gu Lu Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+
+17. 
+荷包蛋 (Sunny Side Up)
+咖喱菜 (Curry Vegetables)
+羊角豆 (Ladies Finger)
+
+
+18. 
+咕噜肉 (Gu Lu Pork)
+甜酸肉片 (Sweet & Sour Pork)
+苦瓜 (Bitter Gourd)
+**淋咖喱汁 (Add Curry Broth)**
+
+19. 
+甜酸肉片 (Sweet & Sour Pork)
+午餐肉 (Luncheon Meat)
+咖喱菜 (Curry Vegetables)
+
+
+20. 
+咕噜肉 (Gu Lu Pork)
+午餐肉 (Luncheon Meat)
+肉碎豆腐 (Tofu with Minced Pork)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+21. 
+芙蓉蛋 (Chinese Omelet)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+
+22. 
+炸猪肉条 (Fried Pork Strip)
+日本豆腐 (Japanese Tofu)
+包菜 (Cabbage)
+
+
+23. 
+甜酸肉片 (Sweet & Sour Pork)
+黑猪肉 (Black Sauce Pork)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+24. 
+蒸蛋 (Steamed Egg)
+咕噜肉 (Gu Lu Pork)
+午餐肉 (Luncheon Meat)
+**淋咖喱汁 (Add Curry Broth)**
+
+25. 
+荷包蛋 (Sunny Side Up)
+日本豆腐 (Japanese Tofu)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+
+26. 
+黑猪肉 (Black Sauce Pork)
+肉碎豆腐 (Tofu with Minced Pork)
+咖喱菜 (Curry Vegetables)
+**淋咖喱汁 (Add Curry Broth)**
+
+27. 
+蒸蛋 (Steamed Egg)
+炸鸡肉条 (Fried Chicken Strip)
+包菜 (Cabbage)
+**淋咖喱汁 (Add Curry Broth)**
+
+28. 
+芙蓉蛋 (Chinese Omelet)
+炸鸡肉条 (Fried Chicken Strip)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+29. 
+甜酸肉片 (Sweet & Sour Pork)
+黑猪肉 (Black Sauce Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+**加饭 (Extra Rice)**
+
+30. 
+蒸蛋 (Steamed Egg)
+肉丸 (Meatballs)
+Crab Nugget
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+31. 
+肉丸 (Meatballs)
+日本豆腐 (Japanese Tofu)
+咖喱菜 (Curry Vegetables)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+32. 
+芙蓉蛋 (Chinese Omelet)
+炸鸡肉条 (Fried Chicken Strip)
+菜豆 (French Beans)
+**淋咖喱汁 (Add Curry Broth)**
+
+33. 
+黑猪肉 (Black Sauce Pork)
+蒸猪肉 (Steamed Pork)
+包菜 (Cabbage)
+**淋咖喱汁 (Add Curry Broth)**
+
+34. 
+荷包蛋 (Sunny Side Up)
+午餐肉 (Luncheon Meat)
+苦瓜 (Bitter Gourd)
+
+
+35. 
+芙蓉蛋 (Chinese Omelet)
+炸鸡肉条 (Fried Chicken Strip)
+咕噜肉 (Gu Lu Pork)
+**加饭 (Extra Rice)**
+
+36. 
+咕噜肉 (Gu Lu Pork)
+黑猪肉 (Black Sauce Pork)
+菜豆 (French Beans)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+37. 
+炸鸡肉条 (Fried Chicken Strip)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+咖喱菜 (Curry Vegetables)
+**淋咖喱汁 (Add Curry Broth)**
+
+38. 
+芙蓉蛋 (Chinese Omelet)
+午餐肉 (Luncheon Meat)
+羊角豆 (Ladies Finger)
+
+
+39. 
+芙蓉蛋 (Chinese Omelet)
+炸猪肉条 (Fried Pork Strip)
+日本豆腐 (Japanese Tofu)
+**淋咖喱汁 (Add Curry Broth)**
+
+40. 
+炸鸡肉条 (Fried Chicken Strip)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+包菜 (Cabbage)
+
+
+41. 
+咕噜肉 (Gu Lu Pork)
+肉碎豆腐 (Tofu with Minced Pork)
+菜豆 (French Beans)
+
+
+42. 
+炸鸡肉条 (Fried Chicken Strip)
+午餐肉 (Luncheon Meat)
+日本豆腐 (Japanese Tofu)
+
+
+43. 
+黑猪肉 (Black Sauce Pork)
+肉碎豆腐 (Tofu with Minced Pork)
+苦瓜 (Bitter Gourd)
+
+
+44. 
+炸鸡肉条 (Fried Chicken Strip)
+肉碎豆腐 (Tofu with Minced Pork)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+**不要汁 (No Broth)**
+
+45. 
+蒸蛋 (Steamed Egg)
+午餐肉 (Luncheon Meat)
+咖喱菜 (Curry Vegetables)
+
+
+46. 
+芙蓉蛋 (Chinese Omelet)
+甜酸肉片 (Sweet & Sour Pork)
+日本豆腐 (Japanese Tofu)
+
+
+47. 
+肉碎豆腐 (Tofu with Minced Pork)
+包菜 (Cabbage)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+
+48. 
+芙蓉蛋 (Chinese Omelet)
+甜酸肉片 (Sweet & Sour Pork)
+咖喱菜 (Curry Vegetables)
+
+
+49. 
+甜酸肉片 (Sweet & Sour Pork)
+肉丸 (Meatballs)
+咖喱菜 (Curry Vegetables)
+**加饭 (Extra Rice)**
+
+50. 
+蒸蛋 (Steamed Egg)
+Crab Nugget
+咖喱菜 (Curry Vegetables)
+**少饭 (Less Rice)**
+
+51. 
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+52. 
+蒸蛋 (Steamed Egg)
+炸猪肉条 (Fried Pork Strip)
+菜豆 (French Beans)
+
+
+53. 
+炸鸡肉条 (Fried Chicken Strip)
+炸猪肉条 (Fried Pork Strip)
+咕噜肉 (Gu Lu Pork)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+54. 
+芙蓉蛋 (Chinese Omelet)
+肉丸 (Meatballs)
+日本豆腐 (Japanese Tofu)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+55. 
+芙蓉蛋 (Chinese Omelet)
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+
+
+56. 
+蒸蛋 (Steamed Egg)
+甜酸肉片 (Sweet & Sour Pork)
+苦瓜 (Bitter Gourd)
+**少饭 (Less Rice)**
+
+57. 
+芙蓉蛋 (Chinese Omelet)
+甜酸肉片 (Sweet & Sour Pork)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+
+58. 
+甜酸肉片 (Sweet & Sour Pork)
+肉丸 (Meatballs)
+日本豆腐 (Japanese Tofu)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+59. 
+荷包蛋 (Sunny Side Up)
+炸鸡肉条 (Fried Chicken Strip)
+菜豆 (French Beans)
+
+
+60. 
+荷包蛋 (Sunny Side Up)
+炸鸡肉条 (Fried Chicken Strip)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+61. 
+咕噜肉 (Gu Lu Pork)
+蒸猪肉 (Steamed Pork)
+包菜 (Cabbage)
+**淋咖喱汁 (Add Curry Broth)**
+
+62. 
+炸鸡肉条 (Fried Chicken Strip)
+甜酸肉片 (Sweet & Sour Pork)
+日本豆腐 (Japanese Tofu)
+
+
+63. 
+黑猪肉 (Black Sauce Pork)
+日本豆腐 (Japanese Tofu)
+肉碎豆腐 (Tofu with Minced Pork)
+**少饭 (Less Rice)**
+
+64. 
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+65. 
+芙蓉蛋 (Chinese Omelet)
+咕噜肉 (Gu Lu Pork)
+包菜 (Cabbage)
+
+
+66. 
+炸猪肉条 (Fried Pork Strip)
+日本豆腐 (Japanese Tofu)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+67. 
+甜酸肉片 (Sweet & Sour Pork)
+日本豆腐 (Japanese Tofu)
+Crab Nugget
+**少饭 (Less Rice)**
+
+68. 
+咕噜肉 (Gu Lu Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+蒸猪肉 (Steamed Pork)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+69. 
+炸猪肉条 (Fried Pork Strip)
+羊角豆 (Ladies Finger)
+**淋咖喱汁 (Add Curry Broth)**
+
+70. 
+甜酸肉片 (Sweet & Sour Pork)
+日本豆腐 (Japanese Tofu)
+咖喱菜 (Curry Vegetables)
+
+
+71. 
+芙蓉蛋 (Chinese Omelet)
+甜酸肉片 (Sweet & Sour Pork)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+72. 
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+羊角豆 (Ladies Finger)
+
+
+73. 
+蒸蛋 (Steamed Egg)
+炸鸡肉条 (Fried Chicken Strip)
+蒸猪肉 (Steamed Pork)
+**加饭 (Extra Rice)**
+**不要汁 (No Broth)**
+
+74. 
+甜酸肉片 (Sweet & Sour Pork)
+午餐肉 (Luncheon Meat)
+肉碎豆腐 (Tofu with Minced Pork)
+
+
+75. 
+蒸蛋 (Steamed Egg)
+肉丸 (Meatballs)
+日本豆腐 (Japanese Tofu)
+
+
+76. 
+咖喱菜 (Curry Vegetables)
+菜豆 (French Beans)
+苦瓜 (Bitter Gourd)
+**淋咖喱汁 (Add Curry Broth)**
+
+77. 
+甜酸肉片 (Sweet & Sour Pork)
+Crab Nugget
+菜豆 (French Beans)
+
+
+78. 
+炸鸡肉条 (Fried Chicken Strip)
+甜酸肉片 (Sweet & Sour Pork)
+肉碎豆腐 (Tofu with Minced Pork)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+79. 
+蒸蛋 (Steamed Egg)
+咕噜肉 (Gu Lu Pork)
+甜酸肉片 (Sweet & Sour Pork)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+80. 
+黑猪肉 (Black Sauce Pork)
+马铃薯炒肉 (Stir Fry Pork with Potato)
+菜豆 (French Beans)
+
+
+81. 
+蒸猪肉 (Steamed Pork)
+肉碎豆腐 (Tofu with Minced Pork)
+咖喱菜 (Curry Vegetables)
+
+
+82. 
+蒸蛋 (Steamed Egg)
+炸鸡肉条 (Fried Chicken Strip)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+
+83. 
+荷包蛋 (Sunny Side Up)
+炸猪肉条 (Fried Pork Strip)
+羊角豆 (Ladies Finger)
+**不要汁 (No Broth)**
+
+84. 
+芙蓉蛋 (Chinese Omelet)
+甜酸肉片 (Sweet & Sour Pork)
+羊角豆 (Ladies Finger)
+**少饭 (Less Rice)**
+
+85. 
+甜酸肉片 (Sweet & Sour Pork)
+午餐肉 (Luncheon Meat)
+菜豆 (French Beans)
+
+
+86. 
+咕噜肉 (Gu Lu Pork)
+黑猪肉 (Black Sauce Pork)
+苦瓜 (Bitter Gourd)
+**加饭 (Extra Rice)**
+
+87. 
+炸鸡肉条 (Fried Chicken Strip)
+甜酸肉片 (Sweet & Sour Pork)
+包菜 (Cabbage)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+88. 
+黑猪肉 (Black Sauce Pork)
+午餐肉 (Luncheon Meat)
+羊角豆 (Ladies Finger)
+**淋咖喱汁 (Add Curry Broth)**
+
+89. 
+芙蓉蛋 (Chinese Omelet)
+炸猪肉条 (Fried Pork Strip)
+苦瓜 (Bitter Gourd)
+**淋咖喱汁 (Add Curry Broth)**
+
+90. 
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+91. 
+甜酸肉片 (Sweet & Sour Pork)
+蒸猪肉 (Steamed Pork)
+苦瓜 (Bitter Gourd)
+**淋咖喱汁 (Add Curry Broth)**
+
+92. 
+炸鸡肉条 (Fried Chicken Strip)
+午餐肉 (Luncheon Meat)
+包菜 (Cabbage)
+**淋咖喱汁 (Add Curry Broth)**
+
+93. 
+咕噜肉 (Gu Lu Pork)
+午餐肉 (Luncheon Meat)
+菜豆 (French Beans)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+94. 
+芙蓉蛋 (Chinese Omelet)
+蒸猪肉 (Steamed Pork)
+咖喱菜 (Curry Vegetables)
+**加饭 (Extra Rice)**
+
+95. 
+甜酸肉片 (Sweet & Sour Pork)
+菜豆 (French Beans)
+苦瓜 (Bitter Gourd)
+
+
+96. 
+芙蓉蛋 (Chinese Omelet)
+黑猪肉 (Black Sauce Pork)
+包菜 (Cabbage)
+**少饭 (Less Rice)**
+
+97. 
+肉碎豆腐 (Tofu with Minced Pork)
+Crab Nugget
+咖喱菜 (Curry Vegetables)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+98. 
+芙蓉蛋 (Chinese Omelet)
+午餐肉 (Luncheon Meat)
+菜豆 (French Beans)
+**加饭 (Extra Rice)**
+
+99. 
+炸鸡肉条 (Fried Chicken Strip)
+甜酸肉片 (Sweet & Sour Pork)
+羊角豆 (Ladies Finger)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+100. 
+芙蓉蛋 (Chinese Omelet)
+咕噜肉 (Gu Lu Pork)
+菜豆 (French Beans)
+
+
+101. 
+马铃薯炒肉 (Stir Fry Pork with Potato)
+日本豆腐 (Japanese Tofu)
+苦瓜 (Bitter Gourd)
+**加饭 (Extra Rice)**
+**淋咖喱汁 (Add Curry Broth)**
+
+102. 
+蒸蛋 (Steamed Egg)
+甜酸肉片 (Sweet & Sour Pork)
+
+
+103. 
+蒸蛋 (Steamed Egg)
+咕噜肉 (Gu Lu Pork)
+日本豆腐 (Japanese Tofu)
+**淋咖喱汁 (Add Curry Broth)**
+
+104. 
+荷包蛋 (Sunny Side Up)
+蒸猪肉 (Steamed Pork)
+苦瓜 (Bitter Gourd)
+
+

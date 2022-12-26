@@ -1,0 +1,33 @@
+*Honey Sesame*
+Pacific ETA=1
+Pacific CAPELLA=1
+Ryan=1
+KK1=2
+KK2=1
+KK9=1
+Study Room=1
+KK8=1
+KK12 D=1
+sLINK Apartment=1
+
+*Black Pepper*
+Ryan=1
+KK2=1
+KK9=3
+KK8=1
+
+*Gu Lu*
+KK1=3
+KK2=1
+Study Room=1
+KK3=1
+KK8=1
+KK12 D=1
+KK12 A=2
+
+*Thai*
+KK2=1
+KK3=1
+KK12 A=1
+KK5=1
+Panorama Block 2=1

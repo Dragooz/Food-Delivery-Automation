@@ -1,0 +1,4 @@
+1. Input folder -> inside should contain filename.txt, excel files
+2. edit filename.txt into the excel file you wanna read (only 1 per run for now)
+3. Output folder -> After running the program, you should see the output. The file name will follow today's date.
+4. When everything is setup, just run 'convert_text.py' then you should see the output in the output folder.
