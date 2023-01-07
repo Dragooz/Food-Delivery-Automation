@@ -20,28 +20,6 @@ from dotenv import load_dotenv
 from mypackage.helpers import Helper
 from mypackage.constants import SHOP_NAME
 
-#setup
-dotenv_path = '/.env'
-load_dotenv(dotenv_path=dotenv_path)
-
-SERVICE_ACCOUNT = os.getenv('SERVICE_ACCOUNT') #The service acc used to create files.
-GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID") #the shared google sheet that user can access and input ID
-SHARED_PARENT_FOLDER_ID = os.getenv("SHARED_PARENT_FOLDER_ID") #the shared parent folder on personal acc
-
-SCOPES = ["https://www.googleapis.com/auth/forms.body", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/forms.responses.readonly", "https://www.googleapis.com/auth/spreadsheets.readonly"]
-
-credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT, scopes=SCOPES)
-kimseng_helper_obj = Helper.KimSeng()
-# jackson_helper_obj = Helper.Jackson()
-hyk_helper_obj = Helper.HYK()
-
-today_str = datetime.today().strftime('%d-%m-%Y')
-
-# %%
-service_form = build('forms', 'v1', credentials=credentials) #forms
-service_sheet = build('sheets', 'v4', credentials=credentials)
-service_drive = build('drive', 'v3', credentials=credentials)
-
 def create_excel_input(formId):
     '''
     Retrieve google sheet and create csv locally
@@ -98,22 +76,7 @@ def get_or_create_folder_id(file_name, parents=None, is_root=False):
 
     res_file = service_drive.files().create(body=file_metadata, supportsAllDrives=True, fields='id').execute()
     file_id = res_file.get('id')
-    # service_drive.permissions().create(fileId = file_id, body={"role": "reader", "type":"user", "emailAddress": "byichonggoh@gmail.com"}, supportsAllDrives=True, fields='id').execute()
     return file_id
-
-#create stuff
-#so the idea here is to export to files, upload the files, and delete the files. can be triggered through the form id
-
-ks_j_hyk_folder_id = get_or_create_folder_id('KS&J&HYK', [SHARED_PARENT_FOLDER_ID], is_root=True)
-kimseng_folder_id = get_or_create_folder_id('KimSeng', [ks_j_hyk_folder_id])
-kimseng_folder_input_id = get_or_create_folder_id('KimSengInput', [kimseng_folder_id])
-kimseng_folder_output_id = get_or_create_folder_id('KimSengOutput', [kimseng_folder_id])
-kimseng_folder_output_today_id = get_or_create_folder_id(f'{today_str} Koutput', [kimseng_folder_output_id])
-
-hyk_folder_id = get_or_create_folder_id('HYK', [ks_j_hyk_folder_id])
-hyk_folder_input_id = get_or_create_folder_id('HYKInput', [hyk_folder_id])
-hyk_folder_output_id = get_or_create_folder_id('HYKOutput', [hyk_folder_id])
-hyk_folder_output_today_id = get_or_create_folder_id(f'{today_str} HYKOutput', [hyk_folder_output_id])
 
 def file_exist(file_name, mimetype):
     files = service_drive.files().list( q=f"name = '{file_name}' and mimeType = '{mimetype}' and trashed = false" ,
@@ -167,6 +130,41 @@ def upload_output_file(excel_name, image_name, text_name, parents):
     else:
         excel_file_id = service_drive.files().create(body=excel_metadata, media_body=excel_media, fields='id').execute()['id']
     excel_media=None
+
+    
+#setup
+load_dotenv()
+
+SERVICE_ACCOUNT = os.getenv('SERVICE_ACCOUNT') #The service acc used to create files.
+GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID") #the shared google sheet that user can access and input ID
+SHARED_PARENT_FOLDER_ID = os.getenv("SHARED_PARENT_FOLDER_ID") #the shared parent folder on personal acc
+
+SCOPES = ["https://www.googleapis.com/auth/forms.body", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/forms.responses.readonly", "https://www.googleapis.com/auth/spreadsheets.readonly"]
+
+credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT, scopes=SCOPES)
+kimseng_helper_obj = Helper.KimSeng()
+# jackson_helper_obj = Helper.Jackson()
+hyk_helper_obj = Helper.HYK()
+
+today_str = datetime.today().strftime('%d-%m-%Y')
+
+# %%
+service_form = build('forms', 'v1', credentials=credentials) #forms
+service_sheet = build('sheets', 'v4', credentials=credentials)
+service_drive = build('drive', 'v3', credentials=credentials)
+#create stuff
+#so the idea here is to export to files, upload the files, and delete the files. can be triggered through the form id
+
+ks_j_hyk_folder_id = get_or_create_folder_id('KS&J&HYK', [SHARED_PARENT_FOLDER_ID], is_root=True)
+kimseng_folder_id = get_or_create_folder_id('KimSeng', [ks_j_hyk_folder_id])
+kimseng_folder_input_id = get_or_create_folder_id('KimSengInput', [kimseng_folder_id])
+kimseng_folder_output_id = get_or_create_folder_id('KimSengOutput', [kimseng_folder_id])
+kimseng_folder_output_today_id = get_or_create_folder_id(f'{today_str} Koutput', [kimseng_folder_output_id])
+
+hyk_folder_id = get_or_create_folder_id('HYK', [ks_j_hyk_folder_id])
+hyk_folder_input_id = get_or_create_folder_id('HYKInput', [hyk_folder_id])
+hyk_folder_output_id = get_or_create_folder_id('HYKOutput', [hyk_folder_id])
+hyk_folder_output_today_id = get_or_create_folder_id(f'{today_str} HYKOutput', [hyk_folder_output_id])
 
 #get sheet list
 sheet_res = service_sheet.spreadsheets().get(spreadsheetId=GOOGLE_SHEET_ID).execute()
