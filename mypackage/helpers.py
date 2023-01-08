@@ -78,6 +78,103 @@ def highlight_rows_ks(row):
     return ['background-color: {}'.format(color) for _ in row]
 
 class Helper:
+
+    class KS_HYK:
+        def output_text_kshyk(self, df_ks, df_hyk, text_name_list):
+            pick_up_point_name_ks = "KimSeng Food Pick Up Point"
+            pick_up_point_name_hyk = "HYK Food Pick Up Point"
+            #create list of locations available today for ks and hyk
+            ks_unique_loc = df_ks["KimSeng Food Pick Up Point"].unique()
+            hyk_unique_loc = df_hyk[pick_up_point_name_hyk].unique()
+            unique_sets = df_hyk['Set'].unique()
+            
+            #create a combined list of unique locations for both ks and hyk
+            kshyk_unique_list = []
+
+            for x in SORTER:
+                if (x in hyk_unique_loc) or (x in ks_unique_loc):
+                    kshyk_unique_list.append(x)
+                    
+            #kshyk combined locations output         
+            with open(text_name_list[0], 'w', encoding="utf-8") as message_list:    
+                for x in kshyk_unique_list:
+                    message_list.write(f'{KK_DICT[x]}' + " = " )
+                    if x in ks_unique_loc:
+                        if df_ks[df_ks[pick_up_point_name_ks]== x]['Packet No.'].min() == df_ks[df_ks[pick_up_point_name_ks]== x]['Packet No.'].max():
+                            message_list.write(f"{df_ks[df_ks[pick_up_point_name_ks]== x]['Packet No.'].min()}")
+                        else:
+                            message_list.write(f"{df_ks[df_ks[pick_up_point_name_ks]== x]['Packet No.'].min()}-{df_ks[df_ks[pick_up_point_name_ks]== x]['Packet No.'].max()}") 
+
+                    if (x in ks_unique_loc) and (x in hyk_unique_loc):
+                        message_list.write(" + ")
+
+                    if x in hyk_unique_loc:
+                        for set in SET_SERIES:
+                            if (((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk['Set'] == set )).sum()) != 0:
+                                message_list.write(f'{set}{((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk["Set"] == set)).sum()}' + ' ')
+                        
+                        for set in F_SERIES:
+                            if (((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk['Set'] == set )).sum()) != 0:
+                                message_list.write(f'{set}{((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk["Set"] == set)).sum()}' + ' ')
+
+                        for set in P_SERIES:
+                            if (((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk['Set'] == set )).sum()) != 0:
+                                message_list.write(f'{set}{((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk["Set"] == set)).sum()}' + ' ')
+
+                        for set in C_SERIES:
+                            if (((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk['Set'] == set )).sum()) != 0:
+                                message_list.write(f'{set}{((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk["Set"] == set)).sum()}' + ' ')
+                        
+                        for set in B_SERIES:
+                            if (((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk['Set'] == set )).sum()) != 0:
+                                message_list.write(f'{set}{((df_hyk[pick_up_point_name_hyk] == x)&(df_hyk["Set"] == set)).sum()}' + ' ')
+                        
+                    message_list.write("\n")
+                    
+            #part timers Salary
+            with open(text_name_list[1], 'w', encoding="utf-8") as part_timer_salary:    
+
+                duo_basic = 21
+                lone_basic = 25
+                incentive_per_pack = 0.05
+                part_timer_salary.write('duo_basic = ' + f'{duo_basic}, ' + 'lone_basic = ' + f'{lone_basic}, ' + 'incentive_per_pack = ' + f'{incentive_per_pack}')
+                part_timer_salary.write('\n\n')
+                part_timer_salary.write('DRIVER A' + '\n')
+
+                driver_A_ks_count = 0
+                for x in DRIVER_A:
+                    if (df_ks["KimSeng Food Pick Up Point"] == x).sum() != 0:
+                        driver_A_ks_count = driver_A_ks_count + (int((df_ks["KimSeng Food Pick Up Point"] == x).sum()))
+                part_timer_salary.write('KS packets = ' + f'{driver_A_ks_count}' + '\n') 
+
+                driver_A_hyk_count = 0
+                for x in DRIVER_A:
+                    if (df_hyk["HYK Food Pick Up Point"] == x).sum() != 0:
+                        driver_A_hyk_count = driver_A_hyk_count + (int((df_hyk["HYK Food Pick Up Point"] == x).sum()))
+                part_timer_salary.write('HYK packets = ' + f'{driver_A_hyk_count}' + '\n')   
+                driver_A_total_packets = driver_A_ks_count + driver_A_hyk_count
+                part_timer_salary.write("TOTAL PACKETS DELIVERED = " + f'{driver_A_total_packets}' + '\n')
+                part_timer_salary.write("SALARY = RM" + f'{duo_basic+incentive_per_pack*driver_A_total_packets}' + '\n')
+                part_timer_salary.write('\n\n')
+                part_timer_salary.write('DRIVER B' + '\n')
+
+                driver_B_ks_count = 0
+                for x in DRIVER_B:
+                    if (df_ks["KimSeng Food Pick Up Point"] == x).sum() != 0:
+                        driver_B_ks_count = driver_B_ks_count + (int((df_ks["KimSeng Food Pick Up Point"] == x).sum()))
+                part_timer_salary.write('KS packets = ' + f'{driver_B_ks_count}' + '\n') 
+                driver_B_hyk_count = 0
+                for x in DRIVER_B:
+                    if (df_hyk["HYK Food Pick Up Point"] == x).sum() != 0:
+                        driver_B_hyk_count = driver_B_hyk_count + (int((df_hyk["HYK Food Pick Up Point"] == x).sum()))
+                part_timer_salary.write('HYK packets = ' + f'{driver_B_hyk_count}' + '\n')   
+                driver_B_total_packets = driver_B_ks_count + driver_B_hyk_count
+                part_timer_salary.write("TOTAL PACKETS DELIVERED = " + f'{driver_B_ks_count+driver_B_hyk_count}' + '\n')
+                part_timer_salary.write("SALARY = RM" + f'{duo_basic+incentive_per_pack*driver_B_total_packets}' + '\n')
+
+                total_packets = driver_A_total_packets + driver_B_total_packets
+                part_timer_salary.write('\n\n')
+                part_timer_salary.write('LONE DRIVER SALARY = ' + f'{lone_basic + total_packets * incentive_per_pack}' + '\n')
     class KimSeng:
         def process_input_ks(self, df, pick_up_point_name):
             '''
@@ -100,33 +197,34 @@ class Helper:
             df['Location'] = df[pick_up_point_name].map(KK_DICT)
             return df
 
-        def output_text_ks(self, txt_name, df, pick_up_point_name,):
+        def output_text_ks(self, txt_name_list, df, pick_up_point_name,):
             # order list
             dishes = df[df.columns[6]].tolist()
             customizes = df[df.columns[7]].fillna(' ').tolist()
             unique_points = df[pick_up_point_name].unique()
-            with open(txt_name, 'w', encoding="utf-8") as order_list_location:
-                order_list_location.write("Order List: \n")
+            with open(txt_name_list[0], 'w', encoding="utf-8") as order_list:
+                # order_list.write("Order List: \n")
                 for index, (d, c) in enumerate(zip(dishes, customizes)):
-                    order_list_location.write(f'{index+1}. \n')
+                    order_list.write(f'{index+1}. \n')
                     for dish in d.split(','):
                         dish = dish.strip()
-                        order_list_location.write(dish)
-                        order_list_location.write('\n')
+                        order_list.write(dish)
+                        order_list.write('\n')
 
                     for customize in c.split(','):
                         customize = customize.strip()
-                        order_list_location.write(customize + '\n')
-                    order_list_location.write('\n')
+                        order_list.write(customize + '\n')
+                    order_list.write('\n')
                 
-                order_list_location.write('-'*50 + '\n')
-                order_list_location.write("Order Location: \n")
+            with open(txt_name_list[1], 'w', encoding="utf-8") as order_location:
+                # order_location.write('-'*50 + '\n')
+                # order_location.write("Order Location: \n")
                 #for loop min() and max() of index of each location into txt file.    
                 for point in unique_points:
                     if df[df[pick_up_point_name]== point]['Packet No.'].min() == df[df[pick_up_point_name]== point]['Packet No.'].max():
-                        order_list_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}={KK_DICT[point]}"+"\n")
+                        order_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}={KK_DICT[point]}"+"\n")
                     else:
-                        order_list_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}-{df[df[pick_up_point_name]== point]['Packet No.'].max()}={KK_DICT[point]}"+"\n")
+                        order_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}-{df[df[pick_up_point_name]== point]['Packet No.'].max()}={KK_DICT[point]}"+"\n")
                 
         def generate_pickup_image_ks(self, df, excel_output_path, image_output_path):
             '''
@@ -165,13 +263,13 @@ class Helper:
             pick_up_point_name = "KimSeng Food Pick Up Point"
             excel_output_path = f"{date_str} orders.xlsx"
             image_output_path = f"{date_str} image.jpg"
-            txt_name = 'Order List + Order Location.txt'
+            txt_name_list = ['KS Order List.txt', 'KS Order Location.txt']
             df = self.process_input_ks(df_input, pick_up_point_name)
             # display(df_input)
-            self.output_text_ks(txt_name, df, pick_up_point_name) ##print text
+            self.output_text_ks(txt_name_list, df, pick_up_point_name) ##print text
             self.generate_pickup_image_ks(df, excel_output_path, image_output_path)
 
-            return excel_output_path, image_output_path, txt_name
+            return excel_output_path, image_output_path, txt_name_list
 
     # class Jackson:
     #     def process_input_js(self, df):
@@ -200,11 +298,11 @@ class Helper:
     #         df['Flavour'] = df['Menu (Select One)'].map(FLAVOUR_DICT)
     #         return df
 
-    #     def output_text_js(self, txt_name, df):
+    #     def output_text_js(self, txt_name_list, df):
     #         unique_locations = df['Location'].unique()
     #         unique_flavours = df['Flavour'].unique()
 
-    #         with open(txt_name, 'w') as food_prepare_runner_assign:
+    #         with open(txt_name_list, 'w') as food_prepare_runner_assign:
     #             food_prepare_runner_assign.write('Chef - Total Food To Prepare: ' + '\n')
     #             food_prepare_runner_assign.write(str(df['Menu (Select One)'].value_counts().rename_axis('Menu').to_frame('counts')))
                 
@@ -261,13 +359,13 @@ class Helper:
     #         shop_name = SHOP_NAME['JS']
     #         excel_output_path = f"{date_str} orders.xlsx"
     #         image_output_path = f"{date_str} image.png"
-    #         txt_name = 'Chef Prep + Runner + Chef Assign.txt'
+    #         txt_name_list = 'Chef Prep + Runner + Chef Assign.txt'
 
     #         df = self.process_input_js(df_input)
-    #         self.output_text_js(txt_name, df) ##print text
+    #         self.output_text_js(txt_name_list, df) ##print text
     #         self.generate_pickup_image_js(df, excel_output_path, image_output_path)
 
-    #         return excel_output_path, image_output_path, txt_name
+    #         return excel_output_path, image_output_path, txt_name_list
 
     class HYK:
         def process_input_hyk(self, df, pick_up_point_name_hyk):
@@ -302,102 +400,107 @@ class Helper:
             
             # Generate a column for location name conversion
             df['Location'] = df['HYK Food Pick Up Point'].map(KK_DICT)
-            
             # Generate a column for shortform of each set conversion
             df['Set'] = df['Menu (Select One)'].map(SET_DICT)
             return df
     
 
-        def output_text_hyk(self, df, pick_up_point_name, txt_name):
+        def output_text_hyk(self, df, pick_up_point_name, txt_name_list):
             #create a list of all unique locations.
             unique_locations_hyk = df['Location'].unique()
+            #create a list of all unique Menu.
+            unique_flavours = df['Menu (Select One)'].unique()
+            #create a list of all unique set shortform
+            unique_sets = df['Set'].unique()
 
-            with open(txt_name, 'w') as hyk_chef_note:
+
+            with open(txt_name_list[0], 'w') as hyk_chef_note:
+                # hyk_chef_note.write('HYK Chef - Total Food To Prepare.txt' + '\n')
+                for ss in SET_SERIES:
+                    if ss in list(df['Set']):
+                        hyk_chef_note.write(f'{ss}'.ljust(8) + f'{(df["Set"] == ss).sum()}' + '\n')
                 
-                hyk_chef_note.write('HYK Chef - Total Food To Prepare.txt' + '\n')
-                for set in SET_SERIES:
-                    if set in list(df['Set']):
-                            hyk_chef_note.write(f'{set}'.ljust(8) + f'{(df["Set"] == set).sum()}' + '\n')
+                if len(F_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                    hyk_chef_note.write('\n' + 'F_SERIES' + '\n')
                 
-                hyk_chef_note.write('\n')
-                hyk_chef_note.write('F_SERIES' + '\n')
-                
-                for set in F_SERIES:
-                    if set in list(df['Set']):
-                            hyk_chef_note.write(f'{set}'.ljust(8) + f'{(df["Set"] == set).sum()}' + '\n')
+                for fs in F_SERIES:
+                    if fs in list(df['Set']):
+                        hyk_chef_note.write(f'{fs}'.ljust(8) + f'{(df["Set"] == fs).sum()}' + '\n')
                             
-                hyk_chef_note.write('\n')
-                hyk_chef_note.write('P_SERIES' + '\n')
+                if len(P_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                    hyk_chef_note.write('\n' + 'P_SERIES' + '\n')
                 
-                for set in P_SERIES:
-                    if set in list(df['Set']):
-                            hyk_chef_note.write(f'{set}'.ljust(8) + f'{(df["Set"] == set).sum()}' + '\n')
+                for ps in P_SERIES:
+                    if ps in list(df['Set']):
+                        hyk_chef_note.write(f'{ps}'.ljust(8) + f'{(df["Set"] == ps).sum()}' + '\n')
                             
-                hyk_chef_note.write('\n')
-                hyk_chef_note.write('C_SERIES' + '\n')
+                if len(C_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                    hyk_chef_note.write('\n' + 'C_SERIES' + '\n')
                 
-                for set in C_SERIES:
-                    if set in list(df['Set']):
-                            hyk_chef_note.write(f'{set}'.ljust(8) + f'{(df["Set"] == set).sum()}' + '\n')
+                for cs in C_SERIES:
+                    if cs in list(df['Set']):
+                        hyk_chef_note.write(f'{cs}'.ljust(8) + f'{(df["Set"] == cs).sum()}' + '\n')
                                     
-                hyk_chef_note.write('\n')
-                hyk_chef_note.write('B_SERIES' + '\n')
+                if len(B_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                    hyk_chef_note.write('\n' + 'B_SERIES' + '\n')
                 
-                for set in B_SERIES:
-                    if set in list(df['Set']):
-                            hyk_chef_note.write(f'{set}'.ljust(8) + f'{(df["Set"] == set).sum()}' + '\n')
+                for bs in B_SERIES:
+                    if bs in list(df['Set']):
+                        hyk_chef_note.write(f'{bs}'.ljust(8) + f'{(df["Set"] == bs).sum()}' + '\n')
 
+            with open(txt_name_list[1], 'w') as hyk_packaging_list:
                 index = 0
-                hyk_chef_note.write('HYK Packaging List.txt' + '\n')
+                # hyk_packaging_list.write('HYK Packaging List.txt' + '\n')
                 for location in unique_locations_hyk:
                     index += 1
-                    hyk_chef_note.write(f'{index}.'.ljust(4))
-                    for set in SET_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    hyk_packaging_list.write(f'{index}.'.ljust(4))
+                    for ss in SET_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == ss )).sum()) != 0:
+                            hyk_packaging_list.write(f'{ss}{((df["Location"] == location)&(df["Set"] == ss)).sum()}'+"  ")
                             
-                    for set in F_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for fs in F_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == fs )).sum()) != 0:
+                            hyk_packaging_list.write(f'{fs}{((df["Location"] == location)&(df["Set"] == fs)).sum()}'+"  ")
                             
-                    for set in P_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for ps in P_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == ps )).sum()) != 0:
+                            hyk_packaging_list.write(f'{ps}{((df["Location"] == location)&(df["Set"] == ps)).sum()}'+"  ")
                             
-                    for set in C_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for cs in C_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == cs )).sum()) != 0:
+                            hyk_packaging_list.write(f'{cs}{((df["Location"] == location)&(df["Set"] == cs)).sum()}'+"  ")
                             
-                    for set in B_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for bs in B_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == bs )).sum()) != 0:
+                            hyk_packaging_list.write(f'{bs}{((df["Location"] == location)&(df["Set"] == bs)).sum()}'+"  ")
                     
-                    hyk_chef_note.write('\n\n')
+                    hyk_packaging_list.write('\n\n')
 
-                hyk_chef_note.write('backup HYK Runner - Location List.txt' + '\n')
+            with open(txt_name_list[2], 'w') as backup_hyk_runner_location_list:
+                # backup_hyk_runner_location_list.write('backup HYK Runner - Location List.txt' + '\n')
                 for location in unique_locations_hyk:
-                    hyk_chef_note.write(f'{location} = ')
-                    for set in SET_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    backup_hyk_runner_location_list.write(f'{location} = ')
+                    for ss in SET_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == ss )).sum()) != 0:
+                            backup_hyk_runner_location_list.write(f'{ss}{((df["Location"] == location)&(df["Set"] == ss)).sum()}'+"  ")
                             
-                    for set in F_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for fs in F_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == fs )).sum()) != 0:
+                            backup_hyk_runner_location_list.write(f'{fs}{((df["Location"] == location)&(df["Set"] == fs)).sum()}'+"  ")
                             
-                    for set in P_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for ps in P_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == ps )).sum()) != 0:
+                            backup_hyk_runner_location_list.write(f'{ps}{((df["Location"] == location)&(df["Set"] == ps)).sum()}'+"  ")
                             
-                    for set in C_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for cs in C_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == cs )).sum()) != 0:
+                            backup_hyk_runner_location_list.write(f'{cs}{((df["Location"] == location)&(df["Set"] == cs)).sum()}'+"  ")
                             
-                    for set in B_SERIES:
-                        if (((df["Location"] == location)&(df['Set'] == set )).sum()) != 0:
-                            hyk_chef_note.write(f'{set}{((df["Location"] == location)&(df["Set"] == set)).sum()}'+"  ")
+                    for bs in B_SERIES:
+                        if (((df["Location"] == location)&(df['Set'] == bs )).sum()) != 0:
+                            backup_hyk_runner_location_list.write(f'{bs}{((df["Location"] == location)&(df["Set"] == bs)).sum()}'+"  ")
                             
-                    hyk_chef_note.write('\n\n')
+                    backup_hyk_runner_location_list.write('\n\n')
 
         def generate_pickup_image_ks(self, df, excel_output_path, image_output_path):
             '''
@@ -461,21 +564,18 @@ class Helper:
 
             logging.info(f"Image generated in {image_output_path}!")
 
-        
-            
-
         def run_hyk(self, df_input, date_str):
             shop_name = SHOP_NAME['KSHYK2'] #or 'HYK' or 'KS'
             pick_up_point_name = "HYK Food Pick Up Point"
             excel_output_path = f"{date_str} orders.xlsx"
             image_output_path = f"{date_str} image.jpg"
-            txt_name = 'Order List + Order Location.txt'
+            txt_name_list = ['HYK Total Food To Prepare.txt','HYK Packaging List.txt', 'backup HYK Runner - Location List.txt']
 
             df = self.process_input_hyk(df_input, pick_up_point_name)
             # display(df)
-            self.output_text_hyk(df, pick_up_point_name, txt_name) ##print text
+            self.output_text_hyk(df, pick_up_point_name, txt_name_list) ##print text
             self.generate_pickup_image_hyk(df, excel_output_path, image_output_path)
-            return excel_output_path, image_output_path, txt_name
+            return excel_output_path, image_output_path, txt_name_list
 
         
 

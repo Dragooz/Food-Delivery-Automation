@@ -12,17 +12,17 @@ SORTER = [
     "Pacific Star - CAPELLA table",
     "Ryan&Miho - RYAN drop off chairs",
     "Ryan&Miho - MIHO drop off chairs",
-    "FASS - Entrance Benches",
-    "Business Fac - Foyer of Za'ba Memorial Library",
+    "KK9 - Hall Table",
     "KK1 - Drop Off Table",
     "Dental Fac - Balai Ungku Aziz tables",
     "KK6 - Lobby White Table",
     "Faculty Alam Bina - Foyer",
     "KK2 - Table in front of Mini Mart",
     "Engine Fac - BME Foyer",
-    "KK9 - Hall Table",
     "Sc Fac - New Chemistry Building (Ground Floor)",
-    "Sc Fac - Study Room in DK4 (1st floor)",
+    "Sc Fac - Study Room in DK4 (1st floor)",   
+    "Business Fac - Foyer of Za'ba Memorial Library",
+    "FASS - Entrance Benches",
     "KK3 - Drop Off Table",
     "KK7 - Seats at dewan entrance",
     "KK4 - Rack outside Administration Office",
@@ -44,20 +44,20 @@ DRIVER_A = [
     "Pacific Star - CAPELLA table",
     "Ryan&Miho - RYAN drop off chairs",
     "Ryan&Miho - MIHO drop off chairs",
-    "FASS - Entrance Benches",
-    "Business Fac - Foyer of Za'ba Memorial Library",
+    "KK9 - Hall Table",
     "KK1 - Drop Off Table",
     "Dental Fac - Balai Ungku Aziz tables",
     "KK6 - Lobby White Table",
     "Faculty Alam Bina - Foyer",
     "KK2 - Table in front of Mini Mart",
-    "Engine Fac - BME Foyer"
+    "Engine Fac - BME Foyer",
+    "Sc Fac - New Chemistry Building (Ground Floor)",
+    "Sc Fac - Study Room in DK4 (1st floor)"
 ]
 
 DRIVER_B = [
-    "KK9 - Hall Table",
-    "Sc Fac - New Chemistry Building (Ground Floor)",
-    "Sc Fac - Study Room in DK4 (1st floor)",
+    "Business Fac - Foyer of Za'ba Memorial Library",
+    "FASS - Entrance Benches",
     "KK3 - Drop Off Table",
     "KK7 - Seats at dewan entrance",
     "KK4 - Rack outside Administration Office",
@@ -136,33 +136,33 @@ SET_DICT = {
 
 
 
-SET_SERIES = [
+SET_SERIES = {
     "S",
     "N",
     "V"
-]
+}
 
-F_SERIES = [
+F_SERIES = {
    "F-FKT",
    "F-FKTM",
    "F-FM",
    "F-FR",
    "F-SFR"
-]
+}
 
-P_SERIES = [
+P_SERIES = {
    "P-PMD",
    "P-PCPM",
    "P-YMD"
-]
+}
 
-C_SERIES = [
+C_SERIES = {
     "C-CSCR",
     "C-RPCR",
     "C-CR"
-]
+}
 
-B_SERIES = [
+B_SERIES = {
     "B-CS",
     "B-SY",
     "B-RB",
@@ -171,9 +171,9 @@ B_SERIES = [
     "B-BB",
     "B-LMK",
     "B-SM"
-]
+}
 
-
+ALL_SERIES = {*SET_SERIES, *F_SERIES, *P_SERIES, *C_SERIES, *B_SERIES}
 
 COLOR_DICT = {
     'Pacific Star - BETA table'                       :'#fca503',
