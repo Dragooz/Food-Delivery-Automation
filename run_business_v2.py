@@ -20,7 +20,13 @@ from dotenv import load_dotenv
 from mypackage.helpers import Helper
 from mypackage.constants import SHOP_NAME
 
-def create_excel_input(formId):
+import logging
+
+#create a logger
+logging.basicConfig(level=logging.INFO)
+
+
+def create_excel_input(service_form, service_sheet, formId):
     '''
     Retrieve google sheet and create csv locally
     '''
@@ -42,7 +48,7 @@ def create_excel_input(formId):
     df.to_csv(file_name, index=False)
     return df, file_name
 
-def create_all_output(df_input, is_kimseng):
+def create_all_output(kimseng_helper_obj, hyk_helper_obj, df_input, is_kimseng):
     if is_kimseng:
         excel_output_path, image_output_path, txt_name = kimseng_helper_obj.run_ks(df_input, today_str)
         return excel_output_path, image_output_path, txt_name
@@ -51,7 +57,7 @@ def create_all_output(df_input, is_kimseng):
         return excel_output_path, image_output_path, txt_name
 
 #Search or Create folders in google drive
-def get_or_create_folder_id(file_name, parents=None, is_root=False):
+def get_or_create_folder_id(service_drive, file_name, parents=None, is_root=False):
     '''
     file_name: File's Name
     parents: [File Id]
@@ -78,14 +84,14 @@ def get_or_create_folder_id(file_name, parents=None, is_root=False):
     file_id = res_file.get('id')
     return file_id
 
-def file_exist(file_name, mimetype):
+def file_exist(service_drive, file_name, mimetype):
     files = service_drive.files().list( q=f"name = '{file_name}' and mimeType = '{mimetype}' and trashed = false" ,
                                        spaces='drive',).execute()['files']
     if len(files) > 0: #exist
         return files[0].get('id')
     return False
 
-def upload_input_file(file_name, parents):
+def upload_input_file(service_drive, file_name, parents):
     '''
     Input:
     file_name: File's Name
@@ -99,7 +105,7 @@ def upload_input_file(file_name, parents):
         file_id = service_drive.files().create(body=file_metadata, media_body=file_media, fields='id').execute()['id']
     file_media = None #To stop reading the file to allow delete
 
-def upload_output_file(excel_name, image_name, text_name, parents):
+def upload_output_file(service_drive, excel_name, image_name, text_name, parents):
     '''
     Output
     file_name: File's Name
@@ -131,78 +137,101 @@ def upload_output_file(excel_name, image_name, text_name, parents):
         excel_file_id = service_drive.files().create(body=excel_metadata, media_body=excel_media, fields='id').execute()['id']
     excel_media=None
 
-    
-#setup
-load_dotenv()
+def run():
+    #setup
+    logging.info("Loading local environment...")
+    load_dotenv()
 
-SERVICE_ACCOUNT = os.getenv('SERVICE_ACCOUNT') #The service acc used to create files.
-GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID") #the shared google sheet that user can access and input ID
-SHARED_PARENT_FOLDER_ID = os.getenv("SHARED_PARENT_FOLDER_ID") #the shared parent folder on personal acc
+    SERVICE_ACCOUNT = os.getenv('SERVICE_ACCOUNT') #The service acc used to create files.
+    GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID") #the shared google sheet that user can access and input ID
+    SHARED_PARENT_FOLDER_ID = os.getenv("SHARED_PARENT_FOLDER_ID") #the shared parent folder on personal acc
 
-SCOPES = ["https://www.googleapis.com/auth/forms.body", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/forms.responses.readonly", "https://www.googleapis.com/auth/spreadsheets.readonly"]
+    SCOPES = ["https://www.googleapis.com/auth/forms.body", "https://www.googleapis.com/auth/drive", "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/forms.responses.readonly", "https://www.googleapis.com/auth/spreadsheets.readonly"]
 
-credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT, scopes=SCOPES)
-kimseng_helper_obj = Helper.KimSeng()
-# jackson_helper_obj = Helper.Jackson()
-hyk_helper_obj = Helper.HYK()
+    credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT, scopes=SCOPES)
+    kimseng_helper_obj = Helper.KimSeng()
+    # jackson_helper_obj = Helper.Jackson()
+    hyk_helper_obj = Helper.HYK()
 
-today_str = datetime.today().strftime('%d-%m-%Y')
+    today_str = datetime.today().strftime('%d-%m-%Y')
 
-# %%
-service_form = build('forms', 'v1', credentials=credentials) #forms
-service_sheet = build('sheets', 'v4', credentials=credentials)
-service_drive = build('drive', 'v3', credentials=credentials)
-#create stuff
-#so the idea here is to export to files, upload the files, and delete the files. can be triggered through the form id
+    # %%
+    logging.info("Building Google's Credentials...")
+    service_form = build('forms', 'v1', credentials=credentials) #forms
+    service_sheet = build('sheets', 'v4', credentials=credentials)
+    service_drive = build('drive', 'v3', credentials=credentials)
+    #create stuff
+    #so the idea here is to export to files, upload the files, and delete the files. can be triggered through the form id
 
-ks_j_hyk_folder_id = get_or_create_folder_id('KS&J&HYK', [SHARED_PARENT_FOLDER_ID], is_root=True)
-kimseng_folder_id = get_or_create_folder_id('KimSeng', [ks_j_hyk_folder_id])
-kimseng_folder_input_id = get_or_create_folder_id('KimSengInput', [kimseng_folder_id])
-kimseng_folder_output_id = get_or_create_folder_id('KimSengOutput', [kimseng_folder_id])
-kimseng_folder_output_today_id = get_or_create_folder_id(f'{today_str} Koutput', [kimseng_folder_output_id])
+    logging.info("Creating/Getting all folder ids...")
+    ks_j_hyk_folder_id = get_or_create_folder_id(service_drive, 'KS&J&HYK', [SHARED_PARENT_FOLDER_ID], is_root=True)
+    kimseng_folder_id = get_or_create_folder_id(service_drive, 'KimSeng', [ks_j_hyk_folder_id])
+    kimseng_folder_input_id = get_or_create_folder_id(service_drive, 'KimSengInput', [kimseng_folder_id])
+    kimseng_folder_output_id = get_or_create_folder_id(service_drive, 'KimSengOutput', [kimseng_folder_id])
+    kimseng_folder_output_today_id = get_or_create_folder_id(service_drive, f'{today_str} Koutput', [kimseng_folder_output_id])
 
-hyk_folder_id = get_or_create_folder_id('HYK', [ks_j_hyk_folder_id])
-hyk_folder_input_id = get_or_create_folder_id('HYKInput', [hyk_folder_id])
-hyk_folder_output_id = get_or_create_folder_id('HYKOutput', [hyk_folder_id])
-hyk_folder_output_today_id = get_or_create_folder_id(f'{today_str} HYKOutput', [hyk_folder_output_id])
+    hyk_folder_id = get_or_create_folder_id(service_drive, 'HYK', [ks_j_hyk_folder_id])
+    hyk_folder_input_id = get_or_create_folder_id(service_drive, 'HYKInput', [hyk_folder_id])
+    hyk_folder_output_id = get_or_create_folder_id(service_drive, 'HYKOutput', [hyk_folder_id])
+    hyk_folder_output_today_id = get_or_create_folder_id(service_drive, f'{today_str} HYKOutput', [hyk_folder_output_id])
 
-#get sheet list
-sheet_res = service_sheet.spreadsheets().get(spreadsheetId=GOOGLE_SHEET_ID).execute()
-dataset = service_sheet.spreadsheets().values().get(
-        spreadsheetId= sheet_res['spreadsheetId'],
-        range=sheet_res['sheets'][0]['properties']['title'],
-        majorDimension= 'ROWS',
-    ).execute()
-google_sheet_df = pd.DataFrame(dataset['values'])
-google_sheet_df = google_sheet_df.rename(columns=google_sheet_df.iloc[0]).drop(google_sheet_df.index[0])
-google_sheet_df = google_sheet_df[google_sheet_df['Date'] == today_str]
+    logging.info("Getting Google Sheet ID information...")
+    #get sheet list
+    sheet_res = service_sheet.spreadsheets().get(spreadsheetId=GOOGLE_SHEET_ID).execute()
+    dataset = service_sheet.spreadsheets().values().get(
+            spreadsheetId= sheet_res['spreadsheetId'],
+            range=sheet_res['sheets'][0]['properties']['title'],
+            majorDimension= 'ROWS',
+        ).execute()
+    google_sheet_df = pd.DataFrame(dataset['values'])
+    google_sheet_df = google_sheet_df.rename(columns=google_sheet_df.iloc[0]).drop(google_sheet_df.index[0])
+    google_sheet_df = google_sheet_df[google_sheet_df['Date'] == today_str]
 
 
-#Kimseng
-kimseng_sheet_id = google_sheet_df["KimSeng"].item()
-if kimseng_sheet_id != "None":
-    df_input, excel_input_name = create_excel_input(kimseng_sheet_id)
-    excel_output_path, image_output_path, txt_name = create_all_output(df_input, True)
-    upload_input_file(excel_input_name, [kimseng_folder_input_id])
-    os.remove(excel_input_name)
+    logging.info("Running Kim Seng program...")
+    #Kimseng
+    kimseng_sheet_id = google_sheet_df["KimSeng"].item()
+    if kimseng_sheet_id != "None":
+        logging.info(f"Kim Seng Sheet ID is {kimseng_sheet_id}. Running now...")
+        df_input, excel_input_name = create_excel_input(service_drive, service_form, service_sheet, kimseng_sheet_id)
+        
+        logging.info(f"Created Excel Input file!")
+        excel_output_path, image_output_path, txt_name = create_all_output(service_drive, df_input, True)
+        logging.info(f"Created all required outputs!")
+        upload_input_file(service_drive, excel_input_name, [kimseng_folder_input_id])
+        logging.info(f"Uploaded excel input file!")
+        os.remove(excel_input_name)
 
-    upload_output_file(excel_output_path, image_output_path, txt_name, [kimseng_folder_output_today_id])
-    os.remove(excel_output_path)
-    os.remove(image_output_path)
-    os.remove(txt_name)
-else:
-    upload_input_file('test.txt', ['1KmT34PACuq4avrlrVDnR6_rAoi3c1hGV'])
+        upload_output_file(service_drive, excel_output_path, image_output_path, txt_name, [kimseng_folder_output_today_id])
+        logging.info(f"Uploaded all the output files!")
+        os.remove(excel_output_path)
+        os.remove(image_output_path)
+        os.remove(txt_name)
+    else:
+        logging.info(f"Kim Seng Google Form ID is none!")
 
-#hyk
-hyk_sheet_id = google_sheet_df["HYK"].item()
-if hyk_sheet_id != "None":
-    df_input, excel_input_name = create_excel_input(hyk_sheet_id)
-    excel_output_path, image_output_path, txt_name = create_all_output(df_input, True)
-    upload_input_file(excel_input_name, [hyk_folder_input_id])
-    os.remove(excel_input_name)
+    logging.info("Running HYK Program...")
+    #hyk
+    hyk_sheet_id = google_sheet_df["HYK"].item()
+    if hyk_sheet_id != "None":
+        logging.info(f"HYK Sheet ID is {kimseng_sheet_id}. Running now...")
+        df_input, excel_input_name = create_excel_input(service_form, service_sheet, hyk_sheet_id)
+        logging.info(f"Created Excel Input file!")
+        excel_output_path, image_output_path, txt_name = create_all_output(df_input, True)
+        logging.info(f"Created all required outputs!")
+        upload_input_file(service_drive, excel_input_name, [hyk_folder_input_id])
+        logging.info(f"Uploaded excel input file!")
+        os.remove(excel_input_name)
 
-    upload_output_file(excel_output_path, image_output_path, txt_name, [hyk_folder_output_today_id])
-    os.remove(excel_output_path)
-    os.remove(image_output_path)
-    os.remove(txt_name)
+        upload_output_file(service_drive, excel_output_path, image_output_path, txt_name, [hyk_folder_output_today_id])
+        logging.info(f"Uploaded all the output files!")
+        os.remove(excel_output_path)
+        os.remove(image_output_path)
+        os.remove(txt_name)
+    else:
+        logging.info(f"HYK Google Form ID is none!")
 
+    logging.info("Finish! Check your Google Drive!")
+
+if __name__ == '__main__':
+    run()
