@@ -207,3 +207,7 @@ COLOR_DICT = {
     'Pantai Panorama Block 2 - Drop Off Tables'            :'#65e0ad',
     'default' : '#BAE1FF' # Blue
 }
+
+DUO_BASIC=21
+LONE_BASIC=25
+INCENTIVE_PER_PACK= 0.1

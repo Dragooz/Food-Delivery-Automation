@@ -1,6 +1,6 @@
 import os
 import logging
-from mypackage.constants import COLOR_DICT, SORTER, KK_DICT, SHOP_NAME, DRIVER_A, DRIVER_B, SET_DICT, SET_SERIES, F_SERIES, P_SERIES, C_SERIES, B_SERIES 
+from mypackage.constants import COLOR_DICT, SORTER, KK_DICT, SHOP_NAME, DRIVER_A, DRIVER_B, SET_DICT, SET_SERIES, F_SERIES, P_SERIES, C_SERIES, B_SERIES, DUO_BASIC,  LONE_BASIC, INCENTIVE_PER_PACK
 #import packages
 import pandas as pd
 from datetime import date, timedelta
@@ -134,10 +134,8 @@ class Helper:
             #part timers Salary
             with open(text_name_list[1], 'w', encoding="utf-8") as part_timer_salary:    
 
-                duo_basic = 21
-                lone_basic = 25
-                incentive_per_pack = 0.05
-                part_timer_salary.write('duo_basic = ' + f'{duo_basic}, ' + 'lone_basic = ' + f'{lone_basic}, ' + 'incentive_per_pack = ' + f'{incentive_per_pack}')
+            
+                part_timer_salary.write('DUO_BASIC = ' + f'{DUO_BASIC}, ' + 'LONE_BASIC = ' + f'{LONE_BASIC}, ' + 'INCENTIVE_PER_PACK = ' + f'{INCENTIVE_PER_PACK}')
                 part_timer_salary.write('\n\n')
                 part_timer_salary.write('DRIVER A' + '\n')
 
@@ -154,7 +152,7 @@ class Helper:
                 part_timer_salary.write('HYK packets = ' + f'{driver_A_hyk_count}' + '\n')   
                 driver_A_total_packets = driver_A_ks_count + driver_A_hyk_count
                 part_timer_salary.write("TOTAL PACKETS DELIVERED = " + f'{driver_A_total_packets}' + '\n')
-                part_timer_salary.write("SALARY = RM" + f'{duo_basic+incentive_per_pack*driver_A_total_packets}' + '\n')
+                part_timer_salary.write("SALARY = RM" + f'{DUO_BASIC+INCENTIVE_PER_PACK*driver_A_total_packets}' + '\n')
                 part_timer_salary.write('\n\n')
                 part_timer_salary.write('DRIVER B' + '\n')
 
@@ -170,11 +168,11 @@ class Helper:
                 part_timer_salary.write('HYK packets = ' + f'{driver_B_hyk_count}' + '\n')   
                 driver_B_total_packets = driver_B_ks_count + driver_B_hyk_count
                 part_timer_salary.write("TOTAL PACKETS DELIVERED = " + f'{driver_B_ks_count+driver_B_hyk_count}' + '\n')
-                part_timer_salary.write("SALARY = RM" + f'{duo_basic+incentive_per_pack*driver_B_total_packets}' + '\n')
+                part_timer_salary.write("SALARY = RM" + f'{DUO_BASIC+INCENTIVE_PER_PACK*driver_B_total_packets}' + '\n')
 
                 total_packets = driver_A_total_packets + driver_B_total_packets
                 part_timer_salary.write('\n\n')
-                part_timer_salary.write('LONE DRIVER SALARY = ' + f'{lone_basic + total_packets * incentive_per_pack}' + '\n')
+                part_timer_salary.write('LONE DRIVER SALARY = ' + f'{LONE_BASIC + total_packets * INCENTIVE_PER_PACK}' + '\n')
     class KimSeng:
         def process_input_ks(self, df, pick_up_point_name):
             '''

@@ -757,12 +757,12 @@ def get_or_create_folder_id(service_drive, file_name, parents=None, is_root=Fals
     parents: [File Id]
     '''
     file_id = ''
-    if is_root:
-      files = service_drive.files().list( q=f"name='{file_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false and parents in '{parents[0]}' " ,
-                                       spaces='drive').execute()['files']
-    else:
-      files = service_drive.files().list( q=f"name='{file_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false" ,
-                                       spaces='drive').execute()['files']
+    # if is_root:
+    files = service_drive.files().list( q=f"name='{file_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false and parents in '{parents[0]}' " ,
+                                    spaces='drive').execute()['files']
+    # else:
+    #   files = service_drive.files().list(q=f"name='{file_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false" ,
+    #                                    spaces='drive').execute()['files']
     if len(files) > 0: #exist
         print(f"{file_name} exist. ")
         file_id = files[0].get('id')
@@ -875,7 +875,7 @@ def run():
     logging.info("Building Google's Credentials...")
     #TODAY_STR
     today_str = (datetime.today() + timedelta(days=1)).strftime('%d-%m-%Y') #today_str = date that file should be run. Hence if today is 04-01-2023, then today str should be 05-01-2023 so that 05-01-2023 row will be read.
-    today_str = "07-01-2023" #today_str = date that file should be run. Hence if today is 04-01-2023, then today str should be 05-01-2023 so that 05-01-2023 row will be read.
+    today_str = "10-01-2023" #today_str = date that file should be run. Hence if today is 04-01-2023, then today str should be 05-01-2023 so that 05-01-2023 row will be read.
     service_form = build('forms', 'v1', credentials=credentials) #forms
     service_sheet = build('sheets', 'v4', credentials=credentials)
     service_drive = build('drive', 'v3', credentials=credentials)
