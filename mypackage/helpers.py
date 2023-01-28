@@ -223,23 +223,32 @@ class Helper:
                         order_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}={KK_DICT[point]}"+"\n")
                     else:
                         order_location.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}-{df[df[pick_up_point_name]== point]['Packet No.'].max()}={KK_DICT[point]}"+"\n")
-                
+
+            with open(txt_name_list[2], 'w', encoding="utf-8") as order_packaging:
+                for point in unique_points:
+                    if df[df[pick_up_point_name]== point]['Packet No.'].min() == df[df[pick_up_point_name]== point]['Packet No.'].max():
+                        order_packaging.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()} ({df[df[pick_up_point_name]== point]['Packet No.'].max()-df[df[pick_up_point_name]== point]['Packet No.'].min()+1} 包)"+"\n")
+                    else:
+                        order_packaging.write(f"{df[df[pick_up_point_name]== point]['Packet No.'].min()}-{df[df[pick_up_point_name]== point]['Packet No.'].max()} ({df[df[pick_up_point_name]== point]['Packet No.'].max()-df[df[pick_up_point_name]== point]['Packet No.'].min()+1} 包)"+"\n")
+
+
         def generate_pickup_image_ks(self, df, excel_output_path, image_output_path):
             '''
             Style df > Export it > Generate image from the excel
             '''
             logging.info(f"Generating pickup image...")
-            
-            df_style = df.style.apply(highlight_rows_ks, axis=1)
+            df_copy = df.copy()
+            df_copy = df_copy.iloc[:, 3:6]
+            df_style = df_copy.style.apply(highlight_rows_ks, axis=1)
 
             #Export as excel
             writer = pd.ExcelWriter(excel_output_path)
             df_style.to_excel(writer, sheet_name='Sheet1', index = False)
 
             #format for the column width, .set_column(index_start, index_end, width)
-            # writer.sheets['Sheet1'].set_column(3, 3, 5)
-            # writer.sheets['Sheet1'].set_column(4, 4, 30)
-            # writer.sheets['Sheet1'].set_column(5, 5, 40)
+            writer.sheets['Sheet1'].set_column("A:A", 10)
+            writer.sheets['Sheet1'].set_column("B:B", 30)
+            writer.sheets['Sheet1'].set_column("C:C", 40)
             # writer.sheets['Sheet1'].set_column(6, 6, 45)
 
             writer.close()
@@ -248,7 +257,7 @@ class Helper:
             wb = o.Workbooks.Open(os.path.join(os.getcwd(), excel_output_path))
             ws = wb.Worksheets['Sheet1']
 
-            ws.Range(ws.Cells(1,1),ws.Cells(df.shape[0],df.shape[1])).CopyPicture(Format=2)
+            ws.Range(ws.Cells(1,1),ws.Cells(df_copy.shape[0]+1,df_copy.shape[1])).CopyPicture(Format=2)
 
             img = ImageGrab.grabclipboard()
             img.save(image_output_path)
@@ -261,7 +270,7 @@ class Helper:
             pick_up_point_name = "KimSeng Food Pick Up Point"
             excel_output_path = f"{date_str} orders.xlsx"
             image_output_path = f"{date_str} image.jpg"
-            txt_name_list = ['KS Order List.txt', 'KS Order Location.txt']
+            txt_name_list = ['KS Order List.txt', 'backup KIMSENG Delivery Location.txt', 'KS Packaging.txt']
             df = self.process_input_ks(df_input, pick_up_point_name)
             # display(df_input)
             self.output_text_ks(txt_name_list, df, pick_up_point_name) ##print text
@@ -447,11 +456,8 @@ class Helper:
                         hyk_chef_note.write(f'{bs}'.ljust(8) + f'{(df["Set"] == bs).sum()}' + '\n')
 
             with open(txt_name_list[1], 'w') as hyk_packaging_list:
-                index = 0
-                # hyk_packaging_list.write('HYK Packaging List.txt' + '\n')
                 for location in unique_locations_hyk:
-                    index += 1
-                    hyk_packaging_list.write(f'{index}.'.ljust(4))
+                    hyk_packaging_list.write(f'{location} = ')
                     for ss in SET_SERIES:
                         if (((df["Location"] == location)&(df['Set'] == ss )).sum()) != 0:
                             hyk_packaging_list.write(f'{ss}{((df["Location"] == location)&(df["Set"] == ss)).sum()}'+"  ")
@@ -499,38 +505,6 @@ class Helper:
                             backup_hyk_runner_location_list.write(f'{bs}{((df["Location"] == location)&(df["Set"] == bs)).sum()}'+"  ")
                             
                     backup_hyk_runner_location_list.write('\n\n')
-
-        def generate_pickup_image_ks(self, df, excel_output_path, image_output_path):
-            '''
-            Style df > Export it > Generate image from the excel
-            '''
-            logging.info(f"Generating pickup image...")
-            
-            df_style = df.style.apply(highlight_rows_ks, axis=1)
-
-            #Export as excel
-            writer = pd.ExcelWriter(excel_output_path)
-            df_style.to_excel(writer, sheet_name='Sheet1', index = False)
-
-            #format for the column width, .set_column(index_start, index_end, width)
-            # writer.sheets['Sheet1'].set_column(3, 3, 5)
-            # writer.sheets['Sheet1'].set_column(4, 4, 30)
-            # writer.sheets['Sheet1'].set_column(5, 5, 40)
-            # writer.sheets['Sheet1'].set_column(6, 6, 45)
-
-            writer.close()
-
-            o = win32com.client.Dispatch('Excel.Application')
-            wb = o.Workbooks.Open(os.path.join(os.getcwd(), excel_output_path))
-            ws = wb.Worksheets['Sheet1']
-
-            ws.Range(ws.Cells(1,1),ws.Cells(df.shape[0],df.shape[1])).CopyPicture(Format=2)
-
-            img = ImageGrab.grabclipboard()
-            img.save(image_output_path)
-            wb.Close(True)
-
-            logging.info(f"Image generated in {image_output_path}!")
                 
         def generate_pickup_image_hyk(self, df, excel_output_path, image_output_path):
             '''
@@ -539,11 +513,17 @@ class Helper:
             logging.info(f"Generating pickup image...")
             
             #for excel
-            df_style = df.style.apply(highlight_rows_hyk, axis=1)
+            df_copy = df.copy()
+            df_copy = df_copy.iloc[:, 3:7]
+            df_style = df_copy.style.apply(highlight_rows_hyk, axis=1)
             writer = pd.ExcelWriter(excel_output_path)
             df_style.to_excel(writer, sheet_name='Sheet1', index = False)
 
             #format for the column width, .set_column(index_start, index_end, width)
+            writer.sheets['Sheet1'].set_column("A:A", 15)
+            writer.sheets['Sheet1'].set_column("B:B", 30)
+            writer.sheets['Sheet1'].set_column("C:C", 40)
+            writer.sheets['Sheet1'].set_column("D:D", 40)
             # writer.sheets['Sheet1'].set_column(3, 3, 5)
             # writer.sheets['Sheet1'].set_column(4, 4, 30)
             # writer.sheets['Sheet1'].set_column(5, 5, 40)
@@ -554,7 +534,7 @@ class Helper:
             wb = o.Workbooks.Open(os.path.join(os.getcwd(), excel_output_path))
             ws = wb.Worksheets['Sheet1']
 
-            ws.Range(ws.Cells(1,2),ws.Cells(df.shape[0]+1,df.shape[1])).CopyPicture(Format=2)
+            ws.Range(ws.Cells(1,2),ws.Cells(df_copy.shape[0]+1,df_copy.shape[1])).CopyPicture(Format=2)
 
             img = ImageGrab.grabclipboard()
             img.save(image_output_path)

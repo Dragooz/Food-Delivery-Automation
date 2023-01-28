@@ -1,0 +1,6 @@
+1. HYK screenshot showed too many columns and the width of the columns are not adjusted
+2. "HYK packaging list" output, the numbers should be replaced with locations. 
+3. KimSeng screenshot showed too many columns and the width of the columns are not adjusted
+4. "KIMSENG Packaging.txt" output missing
+5. need Output for deleted duplicates ?
+6. "KS Order Location.txt" name already changed to "backup KIMSENG Delivery Location.txt"
