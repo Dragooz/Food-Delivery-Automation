@@ -427,28 +427,28 @@ class Helper:
                     if ss in list(df['Set']):
                         hyk_chef_note.write(f'{ss}'.ljust(8) + f'{(df["Set"] == ss).sum()}' + '\n')
                 
-                if len(F_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                if len(set(F_SERIES).intersection(set(list(df['Set'])))) != 0 :
                     hyk_chef_note.write('\n' + 'F_SERIES' + '\n')
                 
                 for fs in F_SERIES:
                     if fs in list(df['Set']):
                         hyk_chef_note.write(f'{fs}'.ljust(8) + f'{(df["Set"] == fs).sum()}' + '\n')
                             
-                if len(P_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                if len(set(P_SERIES).intersection(set(list(df['Set'])))) != 0 :
                     hyk_chef_note.write('\n' + 'P_SERIES' + '\n')
                 
                 for ps in P_SERIES:
                     if ps in list(df['Set']):
                         hyk_chef_note.write(f'{ps}'.ljust(8) + f'{(df["Set"] == ps).sum()}' + '\n')
                             
-                if len(C_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                if len(set(C_SERIES).intersection(set(list(df['Set'])))) != 0 :
                     hyk_chef_note.write('\n' + 'C_SERIES' + '\n')
                 
                 for cs in C_SERIES:
                     if cs in list(df['Set']):
                         hyk_chef_note.write(f'{cs}'.ljust(8) + f'{(df["Set"] == cs).sum()}' + '\n')
                                     
-                if len(B_SERIES.intersection(set(list(df['Set'])))) != 0 :
+                if len(set(B_SERIES).intersection(set(list(df['Set'])))) != 0 :
                     hyk_chef_note.write('\n' + 'B_SERIES' + '\n')
                 
                 for bs in B_SERIES:

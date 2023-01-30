@@ -32,9 +32,6 @@ SORTER = [
     "KK12 - Block D Benches (near Bank Islam ATM machine)",
     "KK12 - Block A Benches (near 2nd entrance gate)",
     "KK5 - Hall Lobby Table (near volleyball court)",
-    "SouthView Apartment - Food Drop Off Point",
-    "SouthLink Apartment- Food Drop Off Table",
-    "Pantai Panorama Block 2 - Drop Off Tables"
 ]
 
 DRIVER_A = [
