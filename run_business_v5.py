@@ -89,7 +89,7 @@ def create_excel_input(formId):
     columns_name = list(df.columns)
     column_d, column_e, column_f = columns_name[3], columns_name[4], columns_name[5]
     if df.duplicated(subset=[column_d, column_e, column_f], keep=False).any() == True:
-        df_duplicated = df.loc[df.duplicated()]
+        df_duplicated = df.loc[df.duplicated(subset=[column_d, column_e, column_f])]
         file_name_duplicated = f"{sheet_res['properties']['title'].replace('/', '-')}_duplicated.csv"
         df_duplicated.to_csv(file_name_duplicated, index=False)
         df.drop_duplicates(subset=[column_d, column_e, column_f], keep='first', inplace=True)
