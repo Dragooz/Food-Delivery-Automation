@@ -58,7 +58,7 @@ kimseng_helper_obj = Helper.KimSeng()
 hyk_helper_obj = Helper.HYK()
 
 today_str = (datetime.today() + timedelta(days=1)).strftime('%d-%m-%Y') #today_str = date that file should be run. Hence if today is 04/01/2023, then today str should be 05/01/2023 so that 05/01/2023 row will be read.
-today_str = '10-01-2023'
+# today_str = '10-01-2023'
 
 # files = service_drive.files().list( q=f"name='KS&J&HYK' and mimeType='application/vnd.google-apps.folder' and trashed=false and parents in '{SHARED_PARENT_FOLDER_ID}' " ,
 #                                        spaces='drive').execute()['files']

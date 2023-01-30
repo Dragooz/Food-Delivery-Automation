@@ -268,9 +268,9 @@ class Helper:
         def run_ks(self, df_input, date_str):
             shop_name = SHOP_NAME['KS'] #or 'JS'
             pick_up_point_name = "KimSeng Food Pick Up Point"
-            excel_output_path = f"{date_str} orders.xlsx"
-            image_output_path = f"{date_str} image.jpg"
-            txt_name_list = ['KS Order List.txt', 'backup KIMSENG Delivery Location.txt', 'KS Packaging.txt']
+            excel_output_path = f"KimSeng {date_str} orders.xlsx"
+            image_output_path = f"KimSeng {date_str} image.jpg"
+            txt_name_list = ['KimSeng Order List.txt', 'KimSeng backup Delivery Location.txt', 'KimSeng Packaging.txt']
             df = self.process_input_ks(df_input, pick_up_point_name)
             # display(df_input)
             self.output_text_ks(txt_name_list, df, pick_up_point_name) ##print text
@@ -545,9 +545,9 @@ class Helper:
         def run_hyk(self, df_input, date_str):
             shop_name = SHOP_NAME['KSHYK2'] #or 'HYK' or 'KS'
             pick_up_point_name = "HYK Food Pick Up Point"
-            excel_output_path = f"{date_str} orders.xlsx"
-            image_output_path = f"{date_str} image.jpg"
-            txt_name_list = ['HYK Total Food To Prepare.txt','HYK Packaging List.txt', 'backup HYK Runner - Location List.txt']
+            excel_output_path = f"HYK {date_str} orders.xlsx"
+            image_output_path = f"HYK {date_str} image.jpg"
+            txt_name_list = ['HYK Total Food To Prepare.txt','HYK Packaging List.txt', 'HYK backup HYK Runner - Location List.txt']
 
             df = self.process_input_hyk(df_input, pick_up_point_name)
             # display(df)

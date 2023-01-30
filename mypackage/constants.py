@@ -135,34 +135,33 @@ SET_DICT = {
 }
 
 
-
-SET_SERIES = {
+SET_SERIES = [
     "S",
     "N",
     "V"
-}
+]
 
-F_SERIES = {
+F_SERIES = [
    "F-FKT",
    "F-FKTM",
    "F-FM",
    "F-FR",
    "F-SFR"
-}
+]
 
-P_SERIES = {
+P_SERIES = [
    "P-PMD",
    "P-PCPM",
    "P-YMD"
-}
+]
 
-C_SERIES = {
+C_SERIES = [
     "C-CSCR",
     "C-RPCR",
     "C-CR"
-}
+]
 
-B_SERIES = {
+B_SERIES = [
     "B-CS",
     "B-SY",
     "B-RB",
@@ -171,9 +170,9 @@ B_SERIES = {
     "B-BB",
     "B-LMK",
     "B-SM"
-}
+]
 
-ALL_SERIES = {*SET_SERIES, *F_SERIES, *P_SERIES, *C_SERIES, *B_SERIES}
+ALL_SERIES = [*SET_SERIES, *F_SERIES, *P_SERIES, *C_SERIES, *B_SERIES]
 
 COLOR_DICT = {
     'Pacific Star - BETA table'                       :'#fca503',
